@@ -1,0 +1,9 @@
+# Python environment
+pypdf/
+__pycache__/
+*.pyc
+*.txt
+*.pdf
+.DS_Store
+node_modules/
+.vscode/

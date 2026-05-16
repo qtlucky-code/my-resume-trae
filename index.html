@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>刘运杰 - Python开发实习生 | 个人主页</title>
+    <!-- 引入 Google Fonts 和 Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #64748b;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #475569;
+            --border-color: #e2e8f0;
+            --accent-color: #3b82f6;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --border-color: #334155;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Navbar */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(var(--bg-color), 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 0;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        header {
+            padding: 8rem 0 4rem;
+            text-align: center;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+            box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.4);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.025em;
+        }
+
+        .tagline {
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-item:hover {
+            color: var(--primary-color);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 4rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 2.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .section-title i {
+            color: var(--primary-color);
+        }
+
+        /* Education */
+        .edu-item {
+            margin-bottom: 2.5rem;
+            padding-left: 1.5rem;
+            border-left: 2px solid var(--border-color);
+            position: relative;
+        }
+
+        .edu-item::before {
+            content: '';
+            position: absolute;
+            left: -7px;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--primary-color);
+        }
+
+        .edu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+        }
+
+        .edu-univ {
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .edu-date {
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+        }
+
+        .edu-degree {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .edu-details {
+            list-style: none;
+            color: var(--text-muted);
+        }
+
+        .edu-details li {
+            margin-bottom: 0.25rem;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .edu-details li::before {
+            content: '•';
+            color: var(--primary-color);
+        }
+
+        /* Projects */
+        .project-grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 2rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .project-title {
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+
+        .project-role {
+            font-size: 0.85rem;
+            padding: 0.25rem 0.75rem;
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary-color);
+            border-radius: 2rem;
+            font-weight: 600;
+        }
+
+        .project-desc {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .project-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+        }
+
+        .project-details.active {
+            max-height: 500px;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px dashed var(--border-color);
+        }
+
+        .project-details ul {
+            list-style: none;
+        }
+
+        .project-details li {
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .project-details li::before {
+            content: '→';
+            color: var(--primary-color);
+        }
+
+        .toggle-details {
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            margin-top: 1rem;
+        }
+
+        /* Vibe Coding */
+        .vibe-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .vibe-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        .vibe-card:hover {
+            border-color: var(--primary-color);
+        }
+
+        .vibe-img {
+            height: 180px;
+            background: #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #94a3b8;
+            position: relative;
+        }
+
+        .vibe-img i {
+            transition: transform 0.5s;
+        }
+
+        .vibe-card:hover .vibe-img i {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        .vibe-content {
+            padding: 1.5rem;
+        }
+
+        .vibe-title {
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .vibe-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .vibe-tag {
+            font-size: 0.75rem;
+            padding: 0.2rem 0.5rem;
+            background: #f1f5f9;
+            color: #475569;
+            border-radius: 4px;
+        }
+
+        .vibe-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* Skills */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-group h4 {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            color: var(--text-main);
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .skill-badge {
+            padding: 0.5rem 1rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: 0.3s;
+        }
+
+        .skill-badge:hover {
+            border-color: var(--primary-color);
+            background: rgba(37, 99, 235, 0.05);
+        }
+
+        .progress-bar-container {
+            margin-bottom: 1.25rem;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.4rem;
+            font-size: 0.9rem;
+        }
+
+        .progress-bg {
+            height: 8px;
+            background: var(--border-color);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--primary-color);
+            border-radius: 4px;
+            transition: width 1s ease-out;
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 0;
+            text-align: center;
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .edu-header { flex-direction: column; }
+            .edu-date { margin-top: 0.25rem; }
+            h1 { font-size: 2rem; }
+            .container { padding: 0 1.5rem; }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="container">
+            <div style="font-weight: 800; font-size: 1.2rem; color: var(--primary-color);">LYJ.DEV</div>
+            <div class="nav-links">
+                <a href="#education">教育背景</a>
+                <a href="#projects">项目经历</a>
+                <a href="#vibe-coding">作品集</a>
+                <a href="#skills">专业技能</a>
+            </div>
+            <button id="theme-toggle" style="background:none; border:none; cursor:pointer; color:var(--text-main); font-size: 1.2rem;">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <header class="animate">
+        <div class="container">
+            <div class="profile-img">
+                <i class="fas fa-user"></i>
+            </div>
+            <h1>刘运杰</h1>
+            <p class="tagline">Python 开发实习生 | 北京科技大学研究生 | 6G & 网络安全研究者</p>
+            <div class="contact-info">
+                <a href="mailto:lyjqingtian@163.com" class="contact-item">
+                    <i class="fas fa-envelope"></i> lyjqingtian@163.com
+                </a>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i> 19135862411
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-location-dot"></i> 北京 / 山西吕梁
+                </div>
+                <a href="https://blog.csdn.net/your_blog_link" target="_blank" class="contact-item">
+                    <i class="fab fa-blogger"></i> CSDN 专栏
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- 教育背景 -->
+        <section id="education" class="animate">
+            <h2 class="section-title"><i class="fas fa-graduation-cap"></i> 教育背景</h2>
+            
+            <div class="edu-item">
+                <div class="edu-header">
+                    <div class="edu-univ">北京科技大学（211，双一流）</div>
+                    <div class="edu-date">2025.09 - 2028.06</div>
+                </div>
+                <div class="edu-degree">通信工程（研究生在读）</div>
+                <ul class="edu-details">
+                    <li>研究方向：RIS 辅助的车联网信号检测与信道估计，使用 Python 构建深度学习模型</li>
+                    <li>利用 NumPy、SciPy 进行大规模矩阵运算与信号仿真</li>
+                    <li>主修课程：数字通信、现代信号处理、阵列信号处理</li>
+                </ul>
+            </div>
+
+            <div class="edu-item">
+                <div class="edu-header">
+                    <div class="edu-univ">天津科技大学</div>
+                    <div class="edu-date">2021.09 - 2025.06</div>
+                </div>
+                <div class="edu-degree">通信工程（本科）</div>
+                <ul class="edu-details">
+                    <li>GPA：4.1/5（专业前 3%）</li>
+                    <li>获得天津市人民政府奖学金、宋庆龄奖学金、国家励志奖学金等 10+ 项荣誉</li>
+                    <li>获得电子设计竞赛、节能减排竞赛、数学竞赛等省级奖项</li>
+                    <li>主修课程：高等数学、通信原理、STM32原理、数字信号处理、C语言</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 项目经历 -->
+        <section id="projects" class="animate">
+            <h2 class="section-title"><i class="fas fa-code-branch"></i> 项目经历</h2>
+            <div class="project-grid">
+                
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-title">仿 CSDN 博客系统</div>
+                        <span class="project-role">个人项目 / 2025.11</span>
+                    </div>
+                    <p class="project-desc">基于 Django 的全栈博客系统，实现了完整的用户交互与内容管理流程。</p>
+                    <div class="vibe-tags">
+                        <span class="vibe-tag">Python</span>
+                        <span class="vibe-tag">Django</span>
+                        <span class="vibe-tag">Bootstrap 5</span>
+                        <span class="vibe-tag">SQLite</span>
+                    </div>
+                    <button class="toggle-details">查看详情 <i class="fas fa-chevron-down"></i></button>
+                    <div class="project-details">
+                        <ul>
+                            <li>采用前后端不分离架构，利用 Django 模板引擎实现动态渲染。</li>
+                            <li>设计并实现了用户、博客、评论等数据模型，使用内置 ORM 进行高效数据库操作。</li>
+                            <li>实现了基于邮件验证码的安全注册与登录流程。</li>
+                            <li>开发了博客创建、编辑、发布及基于数据库的简单全文搜索功能。</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-title">面向 6G 的零触碰自动化网络安全框架</div>
+                        <span class="project-role">项目负责人 / 2025.09 - 2025.10</span>
+                    </div>
+                    <p class="project-desc">基于 IEEE 顶级期刊论文，实现的面向 6G 网络的自动化跨层安全框架。</p>
+                    <div class="vibe-tags">
+                        <span class="vibe-tag">AutoML</span>
+                        <span class="vibe-tag">Python</span>
+                        <span class="vibe-tag">Security</span>
+                        <span class="vibe-tag">Data Science</span>
+                    </div>
+                    <button class="toggle-details">查看详情 <i class="fas fa-chevron-down"></i></button>
+                    <div class="project-details">
+                        <ul>
+                            <li>实现了 Chebyshev 过采样技术，解决动态处理数据流中的类别不平衡问题。</li>
+                            <li>在 Oracle RF 和 CICIDS2017 数据集上进行实验验证，准确率超过 99.4%。</li>
+                            <li>成功复现了论文的高性能指标，验证了对零日攻击的适应能力。</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-title">基于百度地图 API 的地理信息编码</div>
+                        <span class="project-role">项目负责人 / 2024.11 - 2024.12</span>
+                    </div>
+                    <p class="project-desc">批量处理非标准化地址数据，将其转换为结构化经纬度坐标的自动化工具。</p>
+                    <div class="vibe-tags">
+                        <span class="vibe-tag">API Integration</span>
+                        <span class="vibe-tag">Requests</span>
+                        <span class="vibe-tag">JSON Parsing</span>
+                    </div>
+                    <button class="toggle-details">查看详情 <i class="fas fa-chevron-down"></i></button>
+                    <div class="project-details">
+                        <ul>
+                            <li>设计并实现了与百度地图地理编码 API 的交互逻辑，处理批量 HTTP 请求。</li>
+                            <li>利用 json 模块提取关键字段，并编写了完备的异常处理与容错逻辑。</li>
+                            <li>实现了地址数据的高效清洗与标准化处理。</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Vibe Coding 作品集 -->
+        <section id="vibe-coding" class="animate">
+            <h2 class="section-title"><i class="fas fa-bolt"></i> Vibe Coding 作品集</h2>
+            <div class="vibe-grid">
+                
+                <div class="vibe-card">
+                    <div class="vibe-img"><i class="fas fa-chart-line"></i></div>
+                    <div class="vibe-content">
+                        <h3 class="vibe-title">6G 安全态势感知大屏</h3>
+                        <div class="vibe-tags">
+                            <span class="vibe-tag">Vue.js</span>
+                            <span class="vibe-tag">ECharts</span>
+                            <span class="vibe-tag">FastAPI</span>
+                        </div>
+                        <p class="project-desc" style="font-size: 0.9rem;">可视化展示自动化安全框架的实时检测效果，支持异常流量动态告警。</p>
+                        <a href="#" class="vibe-link">查看 Demo <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+
+                <div class="vibe-card">
+                    <div class="vibe-img"><i class="fas fa-keyboard"></i></div>
+                    <div class="vibe-content">
+                        <h3 class="vibe-title">Python 自动化办公工具集</h3>
+                        <div class="vibe-tags">
+                            <span class="vibe-tag">Python</span>
+                            <span class="vibe-tag">Pandas</span>
+                            <span class="vibe-tag">OpenPyXL</span>
+                        </div>
+                        <p class="project-desc" style="font-size: 0.9rem;">整合了地址转坐标、Excel 数据清洗、PDF 文本提取等常用脚本。</p>
+                        <a href="#" class="vibe-link">GitHub 仓库 <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+
+                <div class="vibe-card">
+                    <div class="vibe-img"><i class="fas fa-blog"></i></div>
+                    <div class="vibe-content">
+                        <h3 class="vibe-title">个人技术博客主题</h3>
+                        <div class="vibe-tags">
+                            <span class="vibe-tag">HTML5</span>
+                            <span class="vibe-tag">CSS3</span>
+                            <span class="vibe-tag">JS</span>
+                        </div>
+                        <p class="project-desc" style="font-size: 0.9rem;">为开发者量身定制的简约、极速博客皮肤，完美适配 CSDN 样式。</p>
+                        <a href="#" class="vibe-link">在线预览 <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 专业技能 -->
+        <section id="skills" class="animate">
+            <h2 class="section-title"><i class="fas fa-tools"></i> 专业技能</h2>
+            <div class="skills-container">
+                
+                <div class="skill-group">
+                    <h4>编程语言与框架</h4>
+                    <div class="progress-bar-container">
+                        <div class="progress-label"><span>Python (Django/NumPy/SciPy)</span><span>90%</span></div>
+                        <div class="progress-bg"><div class="progress-fill" style="width: 90%;"></div></div>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-label"><span>C / STM32 开发</span><span>75%</span></div>
+                        <div class="progress-bg"><div class="progress-fill" style="width: 75%;"></div></div>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-label"><span>HTML5 / CSS3 / Bootstrap</span><span>85%</span></div>
+                        <div class="progress-bg"><div class="progress-fill" style="width: 85%;"></div></div>
+                    </div>
+                </div>
+
+                <div class="skill-group">
+                    <h4>数据库与基础设施</h4>
+                    <div class="skill-list">
+                        <span class="skill-badge"><i class="fas fa-database"></i> SQL / ORM</span>
+                        <span class="skill-badge"><i class="fab fa-linux"></i> Linux 命令</span>
+                        <span class="skill-badge"><i class="fab fa-docker"></i> Docker 容器</span>
+                        <span class="skill-badge"><i class="fas fa-network-wired"></i> 计算机网络</span>
+                        <span class="skill-badge"><i class="fas fa-shield-alt"></i> 网络安全</span>
+                    </div>
+                </div>
+
+                <div class="skill-group">
+                    <h4>其他能力</h4>
+                    <div class="skill-list">
+                        <span class="skill-badge"><i class="fas fa-language"></i> 英语 CET-6</span>
+                        <span class="skill-badge"><i class="fas fa-edit"></i> 技术写作 (CSDN)</span>
+                        <span class="skill-badge"><i class="fas fa-microchip"></i> 硬件仿真</span>
+                        <span class="skill-badge"><i class="fas fa-users"></i> 团队协作</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 刘运杰. Built with <i class="fas fa-heart" style="color: #ef4444;"></i> and Python Vibe.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Project Detail Toggle
+        document.querySelectorAll('.toggle-details').forEach(button => {
+            button.addEventListener('click', () => {
+                const details = button.nextElementSibling;
+                const icon = button.querySelector('i');
+                
+                details.classList.toggle('active');
+                
+                if (details.classList.contains('active')) {
+                    button.innerHTML = '收起详情 <i class="fas fa-chevron-up"></i>';
+                } else {
+                    button.innerHTML = '查看详情 <i class="fas fa-chevron-down"></i>';
+                }
+            });
+        });
+
+        // Theme Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+        const icon = themeToggle.querySelector('i');
+
+        themeToggle.addEventListener('click', () => {
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+                icon.className = 'fas fa-moon';
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                icon.className = 'fas fa-sun';
+            }
+        });
+
+        // Simple Reveal Animation on Scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.8s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
